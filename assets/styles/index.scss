@@ -10,6 +10,10 @@ body {
   padding: 0;
 }
 
+h1 {
+  text-align: center;
+}
+
 .game-wrapper {
   margin-top: 100px;
   display: block;
@@ -94,4 +98,32 @@ body {
   height: 33%;
   border-top: 1px solid black;
   border-left: 1px solid black;
+}
+
+.scores {
+  border: 1px solid black;
+  border-radius: 10px;
+  display: block;
+  height: 50px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.player1 {
+  float: left;
+  height: 33%;
+  width: 33%;
+}
+
+.ties {
+  float: left;
+  height: 33%;
+  width: 33%;
+}
+
+.player2 {
+  float: left;
+  height: 33%;
+  width: 33%;
 }
