@@ -1,17 +1,25 @@
 'use strict';
 
-let changeColorRed = function () {
-  $(this).css('background-color', 'red');
+
+let resetGame = function () {
+  $('.square').text('');
 };
 
-let reset = function () {
-  $('.square').css('background-color', '#4e4e4e');
+let turnCount = 0;
+let makeMark = function () {
+  if (turnCount % 2 === 0) {
+    $(this).text('X');
+    //checkfor win
+  } else {
+    $(this).text('O');
+    //checkfor win
+  }
+  turnCount++;
 };
 
+$('.square').on('click', makeMark);
 
-$('.square').on('click', changeColorRed);
-
-$('button').on('click', reset);
+$('button').on('click', resetGame);
 
 
 
