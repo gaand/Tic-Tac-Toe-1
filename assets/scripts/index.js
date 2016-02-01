@@ -10,5 +10,6 @@ require('./example');
 require('../styles/index.scss');
 
 $(document).ready(() => {
-  console.log('It works.');
+console.log('it works');
+
 });
