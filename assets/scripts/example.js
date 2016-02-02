@@ -3,28 +3,35 @@
 
 //const board = $('.square');
 
+let board = ['','','','','','','','',''];
+let turnCount = 0;
+let playerX = 0;
+let playerO = 0;
+// let playerXWins = 0;
+// let playerOWins = 0;
 
 
-
-let resetGame = function () {
+const resetGame = function () {
+  turnCount = 0;
+  board = ['','','','','','','','',''];
   $('.square').html('');
 };
 
 $('button').on('click', resetGame);
 
-
-
-//let player = ['X', 'O'];
-const board = ['','','','','','','','',''];
-let turnCount = 0;
-
 let checkRow = function(a, b, c) {
     if (a === 'X' && b === 'X' && c === 'X') {
         alert('X wins');
-        return 'X is the winner';
+        playerX += 1;
+        $('#playerX').html(playerX);
+        resetGame();
+        //return 'X is the winner';
     } else if (a === 'O' && b === 'O' && c === 'O') {
-      alert('O wins');
-        return 'O is the winner';
+        alert('O wins');
+        playerO +=1;
+        $('#playerO').html(playerO);
+        resetGame();
+        //return 'O is the winner';
 
     }
 };
@@ -45,6 +52,7 @@ let getWinner = function () {
 
 
   let makeMark = function () {
+
     if ($(this).html() === ''){
       if (turnCount % 2 === 0) {
       $(this).html('X');
@@ -52,16 +60,19 @@ let getWinner = function () {
       //alert(event.target.id);
       //alert(board);
       getWinner();
+      console.log(board);
+
   } else {
-    $(this).html('O');
-    board[event.target.id] = 'O';
+      $(this).html('O');
+      board[event.target.id] = 'O';
       //alert(event.target.id);
       //alert(board);
-    getWinner();
-  }
-  turnCount++;
-  }
-};
+      getWinner();
+      console.log(board);
+    }
+      turnCount++;
+    }
+  };
   $('.square').on('click', makeMark);
 
 
