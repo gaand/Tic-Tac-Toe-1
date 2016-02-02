@@ -7,14 +7,23 @@ let board = ['','','','','','','','',''];
 let turnCount = 0;
 let playerX = 0;
 let playerO = 0;
+let ties = 0;
 // let playerXWins = 0;
 // let playerOWins = 0;
-
 
 const resetGame = function () {
   turnCount = 0;
   board = ['','','','','','','','',''];
   $('.square').html('');
+};
+
+let isItATie = function () {
+  if(turnCount === 9) {
+    alert('Its a Tie');
+    ties += 1;
+    $('#ties').html(ties);
+    resetGame();
+  }
 };
 
 $('button').on('click', resetGame);
@@ -55,25 +64,31 @@ let getWinner = function () {
 
     if ($(this).html() === ''){
       if (turnCount % 2 === 0) {
-      $(this).html('X');
-      board[event.target.id] = 'X';
+        turnCount++;
+        $(this).html('X');
+        board[event.target.id] = 'X';
       //alert(event.target.id);
       //alert(board);
-      getWinner();
-      console.log(board);
+        getWinner();
+        isItATie();
+        console.log(turnCount);
+      //console.log(board);
 
   } else {
+      turnCount++;
       $(this).html('O');
       board[event.target.id] = 'O';
       //alert(event.target.id);
       //alert(board);
       getWinner();
-      console.log(board);
+      isItATie();
+      console.log(turnCount);
+      //console.log(board);
     }
-      turnCount++;
+      //turnCount++;
     }
   };
-  $('.square').on('click', makeMark);
+    $('.square').on('click', makeMark);
 
 
 
