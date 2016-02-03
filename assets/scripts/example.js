@@ -1,8 +1,5 @@
 'use strict';
 
-
-//const board = $('.square');
-
 let board = ['','','','','','','','',''];
 let turnCount = 0;
 let playerX = 0;
@@ -90,28 +87,6 @@ let getWinner = function () {
     }
   };
     $('.square').on('click', makeMark);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
