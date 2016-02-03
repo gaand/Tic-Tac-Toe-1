@@ -30,18 +30,19 @@ $('button').on('click', resetGame);
 
 let checkRow = function(a, b, c) {
     if (a === 'X' && b === 'X' && c === 'X') {
-        alert('X wins');
+        //alert('X wins');
         playerX += 1;
+        $('.show-winner').html('Player X Wins!');
         $('#playerX').html(playerX);
         resetGame();
         //return 'X is the winner';
     } else if (a === 'O' && b === 'O' && c === 'O') {
-        alert('O wins');
+        //alert('O wins');
         playerO +=1;
+        $('.show-winner').html('Player O Wins!');
         $('#playerO').html(playerO);
         resetGame();
         //return 'O is the winner';
-
     }
 };
 
