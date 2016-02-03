@@ -1,15 +1,10 @@
 'use strict';
 
-
-//const board = $('.square');
-
-let board = ['','','','','','','','',''];
-let turnCount = 0;
-let playerX = 0;
-let playerO = 0;
-let ties = 0;
-// let playerXWins = 0;
-// let playerOWins = 0;
+ let board = ['','','','','','','','',''];
+ let turnCount = 0;
+ let playerX = 0;
+ let playerO = 0;
+ let ties = 0;
 
 const resetGame = function () {
   turnCount = 0;
@@ -19,9 +14,9 @@ const resetGame = function () {
 
 let isItATie = function () {
   if(turnCount === 9) {
-    alert('Its a Tie');
+    $('.show-winner').html('Its a Tie!');
     ties += 1;
-    $('#ties').html(ties);
+    $('.ties').html(ties);
     resetGame();
   }
 };
@@ -33,14 +28,14 @@ let checkRow = function(a, b, c) {
         //alert('X wins');
         playerX += 1;
         $('.show-winner').html('Player X Wins!');
-        $('#playerX').html(playerX);
+        $('.playerX').html(playerX);
         resetGame();
         //return 'X is the winner';
     } else if (a === 'O' && b === 'O' && c === 'O') {
         //alert('O wins');
         playerO +=1;
         $('.show-winner').html('Player O Wins!');
-        $('#playerO').html(playerO);
+        $('.playerO').html(playerO);
         resetGame();
         //return 'O is the winner';
     }
@@ -89,30 +84,6 @@ let getWinner = function () {
       //turnCount++;
     }
   };
-    $('.square').on('click', makeMark);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  $('.square').on('click', makeMark);
 
 module.exports = true;
