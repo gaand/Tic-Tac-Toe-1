@@ -12,4 +12,16 @@ require('../styles/index.scss');
 $(document).ready(() => {
 console.log('it works');
 
+
+
+
+
+
+
+
+
+
+
+
+
 });
