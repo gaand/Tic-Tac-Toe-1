@@ -10,10 +10,11 @@
     <div class="container-fluid">
 
       <div class="navbar-header">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bs-example-modal-sm"> Sign-Out </button>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ch-pass-modal"> Change Password </button>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#sign-in-modal"> Sign-In </button>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#sign-up-modal"> Sign-Up </button>
-        <button type="button" class="btn btn-danger-outline"> New-Game </button>
+
 
 
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -116,6 +117,25 @@
       </div>
     </div>
   </div>
+
+  <!-- sign-out -->
+  <!-- Small modal -->
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+        <div class="message">Are you sure you want to sign-out?
+      <button type="submit" class="btn btn-primary">Yes I want to sign-out</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 
   <h1>Lets Play Tic-Tac-Toe!</h1>
   <h5 class="show-winner"> </h5>
