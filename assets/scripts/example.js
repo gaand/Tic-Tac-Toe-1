@@ -5,13 +5,13 @@ let turnCount = 0;
 let playerX = 0;
 let playerO = 0;
 let ties = 0;
-//let currPlayer;
 let player;
 
 const myApp = {
   baseUrl: 'http://tic-tac-toe.wdibos.com/'
 };
 
+// creates a new game when player signs in
 let createGame = function() {
   $.ajax({
     url: myApp.baseUrl + '/games',
@@ -28,6 +28,7 @@ let createGame = function() {
   });
 };
 
+// updates the moves of each player
 let updateMove = function(player, index) {
   $.ajax({
     url: myApp.baseUrl + '/games/' + myApp.game.id,
@@ -52,6 +53,7 @@ let updateMove = function(player, index) {
   });
 };
 
+// signs up a new player
 let signUpUser = function(event) {
   event.preventDefault();
   let item = new FormData(event.target);
@@ -69,6 +71,7 @@ let signUpUser = function(event) {
   });
 };
 
+// signs in a previously signed up player
 let signInUser = function() {
   event.preventDefault();
   let item = new FormData(event.target);
@@ -90,6 +93,7 @@ let signInUser = function() {
 
 };
 
+// changes the password of a previously signed in player
 let changePass = function() {
   event.preventDefault();
   if(!myApp.user) {
@@ -113,6 +117,7 @@ let changePass = function() {
   });
 };
 
+// signs out a previously signed in user
 let signOutUser = function() {
   event.preventDefault();
   if(!myApp.user) {
@@ -135,6 +140,7 @@ let signOutUser = function() {
 });
 };
 
+// handles user status
 let init = function() {
   $('#sign-up').on('submit', signUpUser);
   $('#sign-in').on('submit', signInUser);
@@ -150,6 +156,7 @@ const resetGame = function() {
   $('.square').html('');
 };
 
+// checks for a tie
 let isItATie = function() {
   if(turnCount === 9) {
     $('.show-winner').html('Its a Tie!');
@@ -161,6 +168,7 @@ let isItATie = function() {
 
 $('button').on('click', resetGame);
 
+// checks each row combination for a either x or o win
 let checkRow = function(a, b, c) {
     if (a === 'x' && b === 'x' && c === 'x') {
         //alert('X wins');
@@ -179,6 +187,7 @@ let checkRow = function(a, b, c) {
     }
 };
 
+// calls checkRow on all possible win combinations
 let getWinner = function() {
     // checking rows
     checkRow(board[0], board[1], board[2]);
@@ -193,7 +202,7 @@ let getWinner = function() {
     checkRow(board[2], board[4], board[6]);
 };
 
-
+  // drives the ship
   let makeMark = function() {
 
     if ($(this).html() === ''){
@@ -206,7 +215,7 @@ let getWinner = function() {
         updateMove('x', event.target.id); // may have to move this
         getWinner();
         isItATie();
-        console.log(turnCount);
+        
 
     } else {
       player = 'o';
