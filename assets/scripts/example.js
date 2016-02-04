@@ -24,7 +24,24 @@ let createGame = function() {
     myApp.game = data.game;
     console.log(data);
   }).fail(function(abc) {
-    console.log(abc);
+    console.error(abc);
+  });
+};
+
+// get all games associated with a user
+let getGames = function() {
+  $.ajax({
+    url: myApp.baseUrl + '/games/' + myApp.game.id,
+    type: 'GET',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    data: {}
+  }).done(function(data) {
+    myApp.game = data.game;
+    console.log(data);
+  }).fail(function(requestObject){
+    console.error(requestObject);
   });
 };
 
@@ -47,9 +64,10 @@ let updateMove = function(player, index) {
     }
   }).done(function(data) {
     myApp.game = data.game;
+    getGames();
     console.log(data);
   }).fail(function(abc) {
-    console.log(abc);
+    console.error(abc);
   });
 };
 
@@ -67,7 +85,7 @@ let signUpUser = function(event) {
   }).done(function(data) {
     console.log(data);
   }).fail(function(abc){
-    console.log(abc);
+    console.error(abc);
   });
 };
 
@@ -88,7 +106,7 @@ let signInUser = function() {
     createGame();
 
   }).fail(function(abc) {
-    console.log(abc);
+    console.error(abc);
   });
 
 };
@@ -113,7 +131,7 @@ let changePass = function() {
   }).done(function(data) {
     console.log(data);
   }).fail(function(abc) {
-    console.log(abc);
+    console.error(abc);
   });
 };
 
@@ -135,8 +153,8 @@ let signOutUser = function() {
 }).done(function(data) {
   console.log(data);
   console.log('Sign out pass');
-}).done(function(abc) {
-  console.log(abc);
+}).fail(function(abc) {
+  console.error(abc);
 });
 };
 
@@ -215,7 +233,7 @@ let getWinner = function() {
         updateMove('x', event.target.id); // may have to move this
         getWinner();
         isItATie();
-        
+
 
     } else {
       player = 'o';
