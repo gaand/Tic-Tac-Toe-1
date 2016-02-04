@@ -1,10 +1,18 @@
 'use strict';
 
+let board = ['', '', '', '', '', '', '', '', ''];
+let turnCount = 0;
+let playerX = 0;
+let playerO = 0;
+let ties = 0;
+//let currPlayer;
+let player;
+
 const myApp = {
   baseUrl: 'http://tic-tac-toe.wdibos.com/'
 };
 
-let createGame = function () {
+let createGame = function() {
   $.ajax({
     url: myApp.baseUrl + '/games',
     type: 'POST',
@@ -12,14 +20,39 @@ let createGame = function () {
       Authorization: 'Token token=' + myApp.user.token,
     },
     data: {}
-  }).done(function (data) {
+  }).done(function(data) {
+    myApp.game = data.game;
     console.log(data);
-  }).fail(function (abc) {
+  }).fail(function(abc) {
     console.log(abc);
   });
 };
 
-let signUpUser = function (event) {
+let updateMove = function(player, index) {
+  $.ajax({
+    url: myApp.baseUrl + '/games/' + myApp.game.id,
+    type: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    data: {
+      "game": {
+        "cell": {
+          "index": index,
+          "value": player,
+        },
+        "over": false
+      }
+    }
+  }).done(function(data) {
+    myApp.game = data.game;
+    console.log(data);
+  }).fail(function(abc) {
+    console.log(abc);
+  });
+};
+
+let signUpUser = function(event) {
   event.preventDefault();
   let item = new FormData(event.target);
   $.ajax({
@@ -29,14 +62,14 @@ let signUpUser = function (event) {
     processData: false,
     data: item
 
-  }).done(function (data) {
+  }).done(function(data) {
     console.log(data);
   }).fail(function(abc){
     console.log(abc);
   });
 };
 
-let signInUser = function () {
+let signInUser = function() {
   event.preventDefault();
   let item = new FormData(event.target);
   $.ajax({
@@ -57,7 +90,7 @@ let signInUser = function () {
 
 };
 
-let changePass = function () {
+let changePass = function() {
   event.preventDefault();
   if(!myApp.user) {
     console.error('Try Again!');
@@ -75,12 +108,12 @@ let changePass = function () {
     data: item,
   }).done(function(data) {
     console.log(data);
-  }).fail(function (abc) {
+  }).fail(function(abc) {
     console.log(abc);
   });
 };
 
-let signOutUser = function () {
+let signOutUser = function() {
   event.preventDefault();
   if(!myApp.user) {
     console.error('Try Again!');
@@ -102,8 +135,7 @@ let signOutUser = function () {
 });
 };
 
-
-let init = function () {
+let init = function() {
   $('#sign-up').on('submit', signUpUser);
   $('#sign-in').on('submit', signInUser);
   $('#change-pass').on('submit', changePass);
@@ -112,23 +144,13 @@ let init = function () {
 
 $(document).ready(init);
 
-
-
-
-
- let board = ['','','','','','','','',''];
- let turnCount = 0;
- let playerX = 0;
- let playerO = 0;
- let ties = 0;
-
-const resetGame = function () {
+const resetGame = function() {
   turnCount = 0;
-  board = ['','','','','','','','',''];
+  board = ['', '', '', '', '', '', '', '', ''];
   $('.square').html('');
 };
 
-let isItATie = function () {
+let isItATie = function() {
   if(turnCount === 9) {
     $('.show-winner').html('Its a Tie!');
     ties += 1;
@@ -140,14 +162,14 @@ let isItATie = function () {
 $('button').on('click', resetGame);
 
 let checkRow = function(a, b, c) {
-    if (a === 'X' && b === 'X' && c === 'X') {
+    if (a === 'x' && b === 'x' && c === 'x') {
         //alert('X wins');
         playerX += 1;
         $('.show-winner').html('Player X Wins!');
         $('.playerX').html(playerX);
         resetGame();
         //return 'X is the winner';
-    } else if (a === 'O' && b === 'O' && c === 'O') {
+    } else if (a === 'o' && b === 'o' && c === 'o') {
         //alert('O wins');
         playerO +=1;
         $('.show-winner').html('Player O Wins!');
@@ -157,7 +179,7 @@ let checkRow = function(a, b, c) {
     }
 };
 
-let getWinner = function () {
+let getWinner = function() {
     // checking rows
     checkRow(board[0], board[1], board[2]);
     checkRow(board[3], board[4], board[5]);
@@ -172,34 +194,32 @@ let getWinner = function () {
 };
 
 
-  let makeMark = function () {
+  let makeMark = function() {
 
     if ($(this).html() === ''){
       if (turnCount % 2 === 0) {
+        player = 'x';
         turnCount++;
-        $(this).html('X');
-        board[event.target.id] = 'X';
-      //alert(event.target.id);
-      //alert(board);
+        $(this).html(player);
+        board[event.target.id] = player;
+
+        updateMove('x', event.target.id); // may have to move this
         getWinner();
         isItATie();
         console.log(turnCount);
-      //console.log(board);
 
-  } else {
+    } else {
+      player = 'o';
       turnCount++;
-      $(this).html('O');
-      board[event.target.id] = 'O';
-      //alert(event.target.id);
-      //alert(board);
+      $(this).html(player);
+      board[event.target.id] = player;
+
+      updateMove('o', event.target.id);
       getWinner();
       isItATie();
-      console.log(turnCount);
-      //console.log(board);
     }
-      //turnCount++;
     }
   };
-  $('.square').on('click', makeMark);
+      $('.square').on('click', makeMark);
 
 module.exports = true;
