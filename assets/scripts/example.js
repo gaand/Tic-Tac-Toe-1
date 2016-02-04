@@ -4,6 +4,21 @@ const myApp = {
   baseUrl: 'http://tic-tac-toe.wdibos.com/'
 };
 
+let createGame = function () {
+  $.ajax({
+    url: myApp.baseUrl + '/games',
+    type: 'POST',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    data: {}
+  }).done(function (data) {
+    console.log(data);
+  }).fail(function (abc) {
+    console.log(abc);
+  });
+};
+
 let signUpUser = function (event) {
   event.preventDefault();
   let item = new FormData(event.target);
@@ -34,9 +49,12 @@ let signInUser = function () {
   }).done(function(data) {
     myApp.user = data.user;
     console.log(data);
+    createGame();
+
   }).fail(function(abc) {
     console.log(abc);
   });
+
 };
 
 let changePass = function () {
