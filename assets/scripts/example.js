@@ -31,7 +31,7 @@ let createGame = function() {
 // get all games associated with a user
 let getGames = function() {
   $.ajax({
-    url: myApp.baseUrl + '/games/' + myApp.game.id,
+    url: myApp.baseUrl + '/games',
     type: 'GET',
     headers: {
       Authorization: 'Token token=' + myApp.user.token,
@@ -64,7 +64,7 @@ let updateMove = function(player, index) {
     }
   }).done(function(data) {
     myApp.game = data.game;
-    getGames();
+    //getGames();
     console.log(data);
   }).fail(function(abc) {
     console.error(abc);
@@ -104,6 +104,7 @@ let signInUser = function() {
     myApp.user = data.user;
     console.log(data);
     createGame();
+    getGames();
 
   }).fail(function(abc) {
     console.error(abc);
