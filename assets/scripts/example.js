@@ -1,5 +1,38 @@
 'use strict';
 
+const myApp = {
+  baseUrl: 'http://tic-tac-toe.wdibos.com/'
+};
+
+let signUpUser = function (event) {
+  event.preventDefault();
+  let item = new FormData(event.target);
+  $.ajax({
+    url: myApp.baseUrl + '/sign-up',
+    type: 'POST',
+    contentType: false,
+    processData: false,
+    data: item
+
+  }).done(function (data){
+    myApp.user = data.user;
+    console.log(data);
+  }).fail(function(abc){
+    console.log(abc);
+  });
+};
+
+
+let init = function () {
+  $('#sign-up').on('submit', signUpUser);
+};
+
+$(document).ready(init);
+
+
+
+
+
  let board = ['','','','','','','','',''];
  let turnCount = 0;
  let playerX = 0;
