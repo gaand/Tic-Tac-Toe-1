@@ -42,7 +42,7 @@ let signInUser = function () {
 let changePass = function () {
   event.preventDefault();
   if(!myApp.user) {
-    console.error('wrong');
+    console.error('Try Again!');
     return;
   }
   let item = new FormData(event.target);
@@ -62,15 +62,34 @@ let changePass = function () {
   });
 };
 
-// let logUserOut = function () {
-//
-// };
+let signOutUser = function () {
+  event.preventDefault();
+  if(!myApp.user) {
+    console.error('Try Again!');
+    return;
+  }
+  $.ajax({
+    url: myApp.baseUrl + '/sign-out/' + myApp.user.id,
+    type: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    contentType: false,
+    processData: false,
+}).done(function(data) {
+  console.log(data);
+  console.log('Sign out pass');
+}).done(function(abc) {
+  console.log(abc);
+});
+};
 
 
 let init = function () {
   $('#sign-up').on('submit', signUpUser);
   $('#sign-in').on('submit', signInUser);
   $('#change-pass').on('submit', changePass);
+  $('#signoutbut').on('click', signOutUser);
 };
 
 $(document).ready(init);
