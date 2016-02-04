@@ -14,10 +14,27 @@ let signUpUser = function (event) {
     processData: false,
     data: item
 
-  }).done(function (data){
-    myApp.user = data.user;
+  }).done(function (data) {
     console.log(data);
   }).fail(function(abc){
+    console.log(abc);
+  });
+};
+
+let signInUser = function () {
+  event.preventDefault();
+  let item = new FormData(event.target);
+  $.ajax({
+    url: myApp.baseUrl + '/sign-in',
+    type: 'POST',
+    contentType: false,
+    processData: false,
+    data: item
+
+  }).done(function(data) {
+    myApp.user = data.user;
+    console.log(data);
+  }).fail(function(abc) {
     console.log(abc);
   });
 };
@@ -25,6 +42,7 @@ let signUpUser = function (event) {
 
 let init = function () {
   $('#sign-up').on('submit', signUpUser);
+  $('#sign-in').on('submit', signInUser);
 };
 
 $(document).ready(init);
