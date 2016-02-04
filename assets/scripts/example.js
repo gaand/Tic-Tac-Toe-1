@@ -39,10 +39,38 @@ let signInUser = function () {
   });
 };
 
+let changePass = function () {
+  event.preventDefault();
+  if(!myApp.user) {
+    console.error('wrong');
+    return;
+  }
+  let item = new FormData(event.target);
+  $.ajax({
+    url: myApp.baseUrl + '/change-password/' + myApp.user.id,
+    type: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    contentType: false,
+    processData: false,
+    data: item,
+  }).done(function(data) {
+    console.log(data);
+  }).fail(function (abc) {
+    console.log(abc);
+  });
+};
+
+// let logUserOut = function () {
+//
+// };
+
 
 let init = function () {
   $('#sign-up').on('submit', signUpUser);
   $('#sign-in').on('submit', signInUser);
+  $('#change-pass').on('submit', changePass);
 };
 
 $(document).ready(init);
