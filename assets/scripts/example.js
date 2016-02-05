@@ -11,6 +11,7 @@ const myApp = {
   baseUrl: 'http://tic-tac-toe.wdibos.com/'
 };
 
+
 // creates a new game when player signs in
 let createGame = function() {
   $.ajax({
@@ -38,7 +39,7 @@ let getGames = function() {
     },
     data: {}
   }).done(function(data) {
-    myApp.game = data.game;
+    //myApp.game = data.game;
     console.log(data);
   }).fail(function(requestObject){
     console.error(requestObject);
@@ -64,7 +65,6 @@ let updateMove = function(player, index) {
     }
   }).done(function(data) {
     myApp.game = data.game;
-    //getGames();
     console.log(data);
   }).fail(function(abc) {
     console.error(abc);
