@@ -40,7 +40,7 @@ let getGames = function() {
     data: {}
   }).done(function(data) {
     myApp.games = data.games;
-
+    $('.games').html(data.games.length);
     console.log(data);
   }).fail(function(requestObject){
     console.error(requestObject);
@@ -175,6 +175,8 @@ const resetGame = function() {
   turnCount = 0;
   board = ['', '', '', '', '', '', '', '', ''];
   $('.square').html('');
+  createGame();
+  getGames();
 };
 
 // checks for a tie
@@ -196,15 +198,13 @@ let checkRow = function(a, b, c) {
         playerX += 1;
         $('.show-winner').html('Player X Wins!');
         $('.playerX').html(playerX);
-        //resetGame();
-        //return 'X is the winner';
+
     } else if (a === 'o' && b === 'o' && c === 'o') {
         //alert('O wins');
         playerO +=1;
         $('.show-winner').html('Player O Wins!');
         $('.playerO').html(playerO);
-        //resetGame();
-        //return 'O is the winner';
+
     }
 };
 
