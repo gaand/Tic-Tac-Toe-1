@@ -4,8 +4,9 @@
 // var example = require('./example');
 
 // load manifests
+require('./assets/scripts/example.js');
 require('./assets/scripts/index.js');
-require('./assets/styles/index.scss');
+//require('./assets/styles/index.scss');
 
 // attach jQuery globally
 require('expose?$!jquery');

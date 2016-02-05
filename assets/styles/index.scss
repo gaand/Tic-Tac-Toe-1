@@ -1,31 +1,62 @@
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
 $background-color: #4e4e4e;
+
 $font-color: #dfdfdf;
 
 body {
-  width: 100%;
-  height: 100%;
   background-color: $background-color;
   color: $font-color;
-  margin: 0;
+  height: 100%;
+  margin: auto;
   padding: 0;
+  width: 100%;
 }
 
-h1, h3 {
+h3,
+h1,
+h5 {
+
   text-align: center;
+}
+
+button {
+  float: right;
+  margin: 8px;
+}
+
+.score-board {
+  display: inline-block;
+}
+
+.p1,
+.p2,
+.gamesplayed,
+.draw {
+  border-radius: 10px;
+  border: 1px solid black;
+  float: left;
+  margin: 10px;
+  padding: 10px;
 }
 
 .game-wrapper {
   margin-top: 100px;
-  display: block;
-  /*border: solid #000000;*/
+  display: inline-block;
   border-radius: 10px;
   height: 400px;
   width: 400px;
-  margin-left: auto;
+  margin-left: 25%;
   margin-right: auto;
 }
 
-.square:hover { background: rgba(255, 0, 0, 0.3); cursor: pointer; }
+
+.square:hover {
+  background: rgba(255, 0, 0, 0.3);
+  cursor: pointer;
+}
+
 
 .r0c0 {
   width: 33%;
@@ -78,7 +109,7 @@ h1, h3 {
 }
 
 .r2c0 {
-  float:left;
+  float: left;
   width: 33%;
   height: 33%;
   border-top: 1px solid black;
@@ -86,7 +117,7 @@ h1, h3 {
 }
 
 .r2c1 {
-  float:left;
+  float: left;
   width: 33%;
   height: 33%;
   border-left: 1px solid black;
@@ -107,5 +138,4 @@ td {
   border: 1px solid black;
   border-radius: 10px;
   padding: 15px;
-
 }
