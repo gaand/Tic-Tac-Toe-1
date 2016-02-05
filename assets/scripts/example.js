@@ -233,6 +233,7 @@ let getWinner = function() {
     if ($(this).html() === ''){
       if (turnCount % 2 === 0) {
         player = 'x';
+        $('.currplayer').html(player);
         turnCount++;
         $(this).html(player);
         board[event.target.id] = player;
@@ -244,6 +245,7 @@ let getWinner = function() {
 
     } else {
       player = 'o';
+      $('.currplayer').html(player);
       turnCount++;
       $(this).html(player);
       board[event.target.id] = player;
