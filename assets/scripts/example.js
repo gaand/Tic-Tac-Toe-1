@@ -40,6 +40,7 @@ let getGames = function() {
     data: {}
   }).done(function(data) {
     //myApp.game = data.game;
+
     console.log(data);
   }).fail(function(requestObject){
     console.error(requestObject);
@@ -181,11 +182,11 @@ let isItATie = function() {
     $('.show-winner').html('Its a Tie!');
     ties += 1;
     $('.ties').html(ties);
-    resetGame();
+    //resetGame();
   }
 };
 
-$('button').on('click', resetGame);
+//$('button').on('click', resetGame);
 
 // checks each row combination for a either x or o win
 let checkRow = function(a, b, c) {
@@ -194,14 +195,14 @@ let checkRow = function(a, b, c) {
         playerX += 1;
         $('.show-winner').html('Player X Wins!');
         $('.playerX').html(playerX);
-        resetGame();
+        //resetGame();
         //return 'X is the winner';
     } else if (a === 'o' && b === 'o' && c === 'o') {
         //alert('O wins');
         playerO +=1;
         $('.show-winner').html('Player O Wins!');
         $('.playerO').html(playerO);
-        resetGame();
+        //resetGame();
         //return 'O is the winner';
     }
 };
@@ -249,5 +250,6 @@ let getWinner = function() {
     }
   };
       $('.square').on('click', makeMark);
+      $('#reset').on('click', resetGame);
 
 module.exports = true;
