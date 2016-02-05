@@ -39,7 +39,7 @@ let getGames = function() {
     },
     data: {}
   }).done(function(data) {
-    //myApp.game = data.game;
+    myApp.games = data.games;
 
     console.log(data);
   }).fail(function(requestObject){
@@ -170,6 +170,7 @@ let init = function() {
 
 $(document).ready(init);
 
+// resets the game
 const resetGame = function() {
   turnCount = 0;
   board = ['', '', '', '', '', '', '', '', ''];
