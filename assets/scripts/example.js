@@ -239,7 +239,7 @@ let isItATie = function() {
   // drives the ship
   let makeMark = function() {
 
-    if ($(this).html() === ''){
+    if ($(this).html() === '' && gameOver === false){
       if (turnCount % 2 === 0) {
         player = 'x';
         turnCount++;
