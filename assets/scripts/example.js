@@ -29,6 +29,7 @@ let createGame = function() {
   }).done(function(data) {
     myApp.game = data.game;
     gameOver = false;
+    $('.currplayer').html('x');
     console.log(data);
   }).fail(function(abc) {
     console.error(abc);
@@ -181,6 +182,8 @@ const resetGame = function() {
   turnCount = 0;
   board = ['', '', '', '', '', '', '', '', ''];
   $('.square').html('');
+  $('.show-winner').html('');
+  $('.currplayer').html('');
   gameOver = false;
   createGame();
   getGames();
