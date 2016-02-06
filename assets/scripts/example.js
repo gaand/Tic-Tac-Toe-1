@@ -9,6 +9,7 @@ let turnCount = 0;
 let playerX = 0;
 let playerO = 0;
 let ties = 0;
+let gameOver = false;
 let player;
 
 const myApp = {
@@ -27,6 +28,7 @@ let createGame = function() {
     data: {}
   }).done(function(data) {
     myApp.game = data.game;
+    gameOver = false;
     console.log(data);
   }).fail(function(abc) {
     console.error(abc);
@@ -179,18 +181,9 @@ const resetGame = function() {
   turnCount = 0;
   board = ['', '', '', '', '', '', '', '', ''];
   $('.square').html('');
+  gameOver = false;
   createGame();
   getGames();
-};
-
-// checks for a tie
-let isItATie = function() {
-  if(turnCount === 9) {
-    $('.show-winner').html('Its a Tie!');
-    ties += 1;
-    $('.ties').html(ties);
-    //resetGame();
-  }
 };
 
 //$('button').on('click', resetGame);
@@ -202,12 +195,14 @@ let checkRow = function(a, b, c) {
         playerX += 1;
         $('.show-winner').html('Player X Wins!');
         $('.playerX').html(playerX);
+        gameOver = true;
 
     } else if (a === 'o' && b === 'o' && c === 'o') {
         //alert('O wins');
         playerO +=1;
         $('.show-winner').html('Player O Wins!');
         $('.playerO').html(playerO);
+        gameOver = true;
 
     }
 };
@@ -226,6 +221,17 @@ let getWinner = function() {
     checkRow(board[0], board[4], board[8]);
     checkRow(board[2], board[4], board[6]);
 };
+
+let isItATie = function() {
+  if(turnCount >= 9 && gameOver === false) {
+    $('.show-winner').html('Its a Tie!');
+    ties += 1;
+    $('.ties').html(ties);
+    gameOver = true;
+    //resetGame();
+  }
+};
+
 
   // drives the ship
   let makeMark = function() {
