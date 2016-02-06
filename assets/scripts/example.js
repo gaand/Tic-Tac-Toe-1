@@ -239,8 +239,8 @@ let isItATie = function() {
     if ($(this).html() === ''){
       if (turnCount % 2 === 0) {
         player = 'x';
-        $('.currplayer').html(player);
         turnCount++;
+        $('.currplayer').html('o');
         $(this).html(player);
         board[event.target.id] = player;
 
@@ -251,7 +251,7 @@ let isItATie = function() {
 
     } else {
       player = 'o';
-      $('.currplayer').html(player);
+      $('.currplayer').html('x');
       turnCount++;
       $(this).html(player);
       board[event.target.id] = player;
