@@ -1,8 +1,9 @@
 body {
   height: 100%;
-  margin: auto;
+  margin: 10px auto;
   padding: 0;
   width: 100%;
+
 }
 
 .currplayer {
@@ -13,6 +14,7 @@ body {
 h3,
 h1,
 h5 {
+  line-height: 1.2;
   text-align: center;
 }
 
@@ -38,6 +40,7 @@ h5 {
   margin-left: 25%;
   margin-right: auto;
   margin-top: 100px;
+  position: relative;
   text-align: center;
   width: 400px;
 }
@@ -60,4 +63,10 @@ button {
   float: left;
   height: 33%;
   width: 33%;
+}
+
+td {
+  border-radius: 10px;
+  display: inline-block;
+  padding: 15px;
 }
