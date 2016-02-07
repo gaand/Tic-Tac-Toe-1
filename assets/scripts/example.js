@@ -92,6 +92,7 @@ let signUpUser = function(event) {
 
   }).done(function(data) {
     console.log(data);
+    $('#sign-up-modal').modal('hide');
   }).fail(function(abc){
     console.error(abc);
   });
@@ -111,6 +112,7 @@ let signInUser = function() {
   }).done(function(data) {
     myApp.user = data.user;
     console.log(data);
+    $('#sign-in-modal').modal('hide');
     createGame();
     getGames();
 
@@ -138,6 +140,7 @@ let changePass = function() {
     processData: false,
     data: item,
   }).done(function(data) {
+    $('#ch-pass-modal').modal('hide');
     console.log(data);
   }).fail(function(abc) {
     console.error(abc);
@@ -161,6 +164,7 @@ let signOutUser = function() {
     processData: false,
 }).done(function(data) {
   console.log(data);
+  $('#sign-out-modal').modal('hide');
   console.log('Sign out pass');
 }).fail(function(abc) {
   console.error(abc);
