@@ -1,0 +1,87 @@
+$background-color: #4e4e4e;
+$font-color: #dfdfdf;
+$paper-white: #fefefe;
+$charcoal-black: #444;
+$pure-black: #000;
+
+@function shade($color, $percentage) {
+  @return mix($pure-black, $color, $percentage);
+}
+
+body {
+  background-color: $paper-white;
+  color: $charcoal-black;
+}
+
+.nav {
+  background-color: $paper-white;
+}
+
+.btn-sm {
+  background-color: $charcoal-black;
+}
+
+.p1,
+.p2,
+.draw,
+.gamesplayed
+ {
+  border: 3px solid $charcoal-black;
+}
+
+.currplayer {
+  color: $charcoal-black;
+}
+
+.square:hover {
+  background: rgba(26, 136, 255, .3);
+  cursor: pointer;
+}
+
+.r0c0 {
+  border-bottom: 1px solid $charcoal-black;
+  border-right: 1px solid $charcoal-black;
+}
+
+.r0c1 {
+  border-bottom: 1px solid $charcoal-black;
+  border-left: 1px solid $charcoal-black;
+  border-right: 1px solid $charcoal-black;
+}
+
+.r0c2 {
+  border-bottom: 1px solid $charcoal-black;
+  border-left: 1px solid $charcoal-black;
+}
+
+.r1c0 {
+  border-bottom: 1px solid $charcoal-black;
+  border-right: 1px solid $charcoal-black;
+  border-top: 1px solid $charcoal-black;
+}
+
+.r1c1 {
+  border: 1px solid $charcoal-black;
+}
+
+.r1c2 {
+  border-bottom: 1px solid $charcoal-black;
+  border-left: 1px solid $charcoal-black;
+  border-top: 1px solid $charcoal-black;
+}
+
+.r2c0 {
+  border-right: 1px solid $charcoal-black;
+  border-top: 1px solid $charcoal-black;
+}
+
+.r2c1 {
+  border-left: 1px solid $charcoal-black;
+  border-right: 1px solid $charcoal-black;
+  border-top: 1px solid $charcoal-black;
+}
+
+.r2c2 {
+  border-left: 1px solid $charcoal-black;
+  border-top: 1px solid $charcoal-black;
+}
