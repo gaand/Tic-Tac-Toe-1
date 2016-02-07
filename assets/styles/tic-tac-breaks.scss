@@ -1,0 +1,17 @@
+@import 'breakpoints';
+
+body {
+  @include breakpoint('large') {
+    height: 100%;
+    margin: 10px auto;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    }
+}
+
+.score-board {
+  @include breakpoint('tiny') {
+    display: flex;
+    }
+}
