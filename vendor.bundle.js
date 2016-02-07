@@ -116,6 +116,7 @@
 	var playerX = 0;
 	var playerO = 0;
 	var ties = 0;
+	var gameOver = false;
 	var player = undefined;
 
 	var myApp = {
@@ -133,6 +134,8 @@
 	    data: {}
 	  }).done(function (data) {
 	    myApp.game = data.game;
+	    gameOver = false;
+	    $('.currplayer').html('X is up!');
 	    console.log(data);
 	  }).fail(function (abc) {
 	    console.error(abc);
@@ -195,6 +198,7 @@
 
 	  }).done(function (data) {
 	    console.log(data);
+	    $('#sign-up-modal').modal('hide');
 	  }).fail(function (abc) {
 	    console.error(abc);
 	  });
@@ -214,6 +218,7 @@
 	  }).done(function (data) {
 	    myApp.user = data.user;
 	    console.log(data);
+	    $('#sign-in-modal').modal('hide');
 	    createGame();
 	    getGames();
 	  }).fail(function (abc) {
@@ -239,6 +244,7 @@
 	    processData: false,
 	    data: item
 	  }).done(function (data) {
+	    $('#ch-pass-modal').modal('hide');
 	    console.log(data);
 	  }).fail(function (abc) {
 	    console.error(abc);
@@ -262,6 +268,8 @@
 	    processData: false
 	  }).done(function (data) {
 	    console.log(data);
+	    $('#sign-out-modal').modal('hide');
+	    $('.games').html('');
 	    console.log('Sign out pass');
 	  }).fail(function (abc) {
 	    console.error(abc);
@@ -283,21 +291,13 @@
 	  turnCount = 0;
 	  board = ['', '', '', '', '', '', '', '', ''];
 	  $('.square').html('');
+	  $('.show-winner').html('');
+	  $('.currplayer').html('');
+	  $('.show-winner').html('-----');
+	  gameOver = false;
 	  createGame();
 	  getGames();
 	};
-
-	// checks for a tie
-	var isItATie = function isItATie() {
-	  if (turnCount === 9) {
-	    $('.show-winner').html('Its a Tie!');
-	    ties += 1;
-	    $('.ties').html(ties);
-	    //resetGame();
-	  }
-	};
-
-	//$('button').on('click', resetGame);
 
 	// checks each row combination for a either x or o win
 	var checkRow = function checkRow(a, b, c) {
@@ -306,11 +306,13 @@
 	    playerX += 1;
 	    $('.show-winner').html('Player X Wins!');
 	    $('.playerX').html(playerX);
+	    gameOver = true;
 	  } else if (a === 'o' && b === 'o' && c === 'o') {
 	    //alert('O wins');
 	    playerO += 1;
 	    $('.show-winner').html('Player O Wins!');
 	    $('.playerO').html(playerO);
+	    gameOver = true;
 	  }
 	};
 
@@ -329,14 +331,24 @@
 	  checkRow(board[2], board[4], board[6]);
 	};
 
+	var isItATie = function isItATie() {
+	  if (turnCount >= 9 && gameOver === false) {
+	    $('.show-winner').html('Its a Tie!');
+	    ties += 1;
+	    $('.ties').html(ties);
+	    gameOver = true;
+	    //resetGame();
+	  }
+	};
+
 	// drives the ship
 	var makeMark = function makeMark() {
 
-	  if ($(this).html() === '') {
+	  if ($(this).html() === '' && gameOver === false) {
 	    if (turnCount % 2 === 0) {
 	      player = 'x';
-	      $('.currplayer').html(player);
 	      turnCount++;
+	      $('.currplayer').html('O is up!');
 	      $(this).html(player);
 	      board[event.target.id] = player;
 
@@ -345,7 +357,7 @@
 	      isItATie();
 	    } else {
 	      player = 'o';
-	      $('.currplayer').html(player);
+	      $('.currplayer').html('X is up!');
 	      turnCount++;
 	      $(this).html(player);
 	      board[event.target.id] = player;
