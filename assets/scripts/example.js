@@ -25,7 +25,7 @@ let createGame = function() {
   }).done(function(data) {
     myApp.game = data.game;
     gameOver = false;
-    $('.currplayer').html('x is up!');
+    $('.currplayer').html('X is up!');
     console.log(data);
   }).fail(function(abc) {
     console.error(abc);
@@ -161,6 +161,7 @@ let signOutUser = function() {
 }).done(function(data) {
   console.log(data);
   $('#sign-out-modal').modal('hide');
+  $('.games').html('');
   console.log('Sign out pass');
 }).fail(function(abc) {
   console.error(abc);
@@ -241,7 +242,7 @@ let isItATie = function() {
       if (turnCount % 2 === 0) {
         player = 'x';
         turnCount++;
-        $('.currplayer').html('o is up!');
+        $('.currplayer').html('O is up!');
         $(this).html(player);
         board[event.target.id] = player;
 
@@ -252,7 +253,7 @@ let isItATie = function() {
 
     } else {
       player = 'o';
-      $('.currplayer').html('x is up!');
+      $('.currplayer').html('X is up!');
       turnCount++;
       $(this).html(player);
       board[event.target.id] = player;
