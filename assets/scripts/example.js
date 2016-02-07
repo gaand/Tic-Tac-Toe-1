@@ -29,7 +29,7 @@ let createGame = function() {
   }).done(function(data) {
     myApp.game = data.game;
     gameOver = false;
-    $('.currplayer').html('x');
+    $('.currplayer').html('x is up!');
     console.log(data);
   }).fail(function(abc) {
     console.error(abc);
@@ -243,7 +243,7 @@ let isItATie = function() {
       if (turnCount % 2 === 0) {
         player = 'x';
         turnCount++;
-        $('.currplayer').html('o');
+        $('.currplayer').html('o is up!');
         $(this).html(player);
         board[event.target.id] = player;
 
@@ -254,7 +254,7 @@ let isItATie = function() {
 
     } else {
       player = 'o';
-      $('.currplayer').html('x');
+      $('.currplayer').html('x is up!');
       turnCount++;
       $(this).html(player);
       board[event.target.id] = player;
