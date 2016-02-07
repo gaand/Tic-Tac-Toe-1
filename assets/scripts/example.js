@@ -185,6 +185,7 @@ const resetGame = function() {
   $('.square').html('');
   $('.show-winner').html('');
   $('.currplayer').html('');
+  $('.show-winner').html('-----');
   gameOver = false;
   createGame();
   getGames();
