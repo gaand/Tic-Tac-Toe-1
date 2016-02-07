@@ -1,8 +1,5 @@
 'use strict';
 
-
-
-
 let board = ['', '', '', '', '', '', '', '', ''];
 
 let turnCount = 0;
@@ -15,7 +12,6 @@ let player;
 const myApp = {
   baseUrl: 'http://tic-tac-toe.wdibos.com/'
 };
-
 
 // creates a new game when player signs in
 let createGame = function() {
@@ -193,8 +189,6 @@ const resetGame = function() {
   getGames();
 };
 
-//$('button').on('click', resetGame);
-
 // checks each row combination for a either x or o win
 let checkRow = function(a, b, c) {
     if (a === 'x' && b === 'x' && c === 'x') {
@@ -269,10 +263,6 @@ let isItATie = function() {
     }
     }
   };
-
-
-
-
 
       $('.square').on('click', makeMark);
       $('#reset').on('click', resetGame);
